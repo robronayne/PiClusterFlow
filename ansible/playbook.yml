@@ -1,0 +1,6 @@
+---
+- hosts: master_node
+  become: yes
+
+- hosts: worker_nodes
+  become: yes
