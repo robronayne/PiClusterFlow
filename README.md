@@ -2,7 +2,9 @@
 
 This repository contains scripts and configuration files to set up a Raspberry Pi cluster with Prometheus, Grafana, and K3s. The motivation behind this project is to create a small-scale, efficient, and flexible cluster environment for running Kubernetes and Airflow. The goal is to automate DAG scheduling for various web scraping scripts, including automated campsite booking and scraping for surfing conditions.
 
-![Pi Cluster Art](https://github.com/robronayne/PiClusterFlow/blob/media/raspberrypi.jpg?raw=true)
+<p align="center">
+  <img src="https://github.com/robronayne/PiClusterFlow/blob/media/raspberrypi.jpg?raw=true" width="400" alt="Pi Cluster Art">
+</p>
 
 ## Directory Structure
 
