@@ -155,7 +155,7 @@ cd PiClusterFlow
 
    ```bash
    cd ansible
-   ansible all -m ping --ask-pass
+   ansible all -m ping
    ```
 
    Expected Output:
