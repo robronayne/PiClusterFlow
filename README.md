@@ -43,6 +43,14 @@ For a detailed guide on setting up the hardware, please refer to this article: [
 
 ## Getting Started
 
+### Clone this Git Repository
+
+Clone the repository and navigate into it:
+```bash
+git clone https://github.com/robronayne/PiClusterFlow.git
+cd PiClusterFlow
+```
+
 ### Install the Raspberry Pi OS on microSD Cards
 
 1. **Install Raspberry Pi Imager and OS:**
@@ -102,7 +110,7 @@ For a detailed guide on setting up the hardware, please refer to this article: [
    - The fourth microSD card into the worker3 node Raspberry Pi.
    - Power on each Raspberry Pi and connect them to the network via Ethernet.
 
-### Install Dependencies and Clone Git Repository
+### Install Dependencies
 
 #### macOS
 
@@ -129,20 +137,13 @@ For a detailed guide on setting up the hardware, please refer to this article: [
    brew install sshpass
    ```
 
-5. **Clone the Repository:**
-   Clone the repository and navigate into it:
-   ```bash
-   git clone https://github.com/robronayne/PiClusterFlow.git
-   cd PiClusterFlow
-   ```
-
-6. **Initialize Ansible:**
+5. **Initialize Ansible:**
    Run the init_ansible.sh script on your computer:
    ```bash
    sudo ./init_ansible.sh
    ```
 
-7. **Save the Raspberry Pi SSH Password:**
+6. **Save the Raspberry Pi SSH Password:**
    The ansible/hosts file will reference an environment variable for your SSH password so that you do not have to enter it each time you run an Ansible command. You can export this variable as follows:
    ```bash
    export ANSIBLE_SSH_PASS='your_ssh_password_here'
