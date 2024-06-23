@@ -6,7 +6,7 @@ get_network_range() {
   IFACE=$(route get default | grep interface | awk '{print $2}')
   SUBNET_MASK=$(ifconfig "$IFACE" | grep netmask | awk '{print $4}')
   
-  NETWORK_ADDR=$(ipcalc -n $IP_ADDR $SUBNET_MASK | grep Network | awk '{print $2}')
+  NETWORK_ADDR=$(ipcalc -n "$IP_ADDR" "$SUBNET_MASK" | grep Network | awk '{print $2}')
   echo "$NETWORK_ADDR"
 }
 
@@ -68,7 +68,6 @@ echo "Scanning the network ($NETWORK_RANGE) for devices..."
 nmap_output=$(nmap -sn "$NETWORK_RANGE" 2>/dev/null)
 
 # Define expected node names and initialize arrays
-PI_USERNAME="pi"
 EXPECTED_NODE_NAMES=("master" "worker1" "worker2" "worker3")
 NODE_IPS=()
 NODE_NAMES=()
@@ -113,17 +112,16 @@ done
 
 # Create Ansible inventory file in the correct directory
 INVENTORY_FILE="ansible/hosts"
-echo "[master_node]" > $INVENTORY_FILE
-echo "master ansible_host=${NODE_IPS[0]} ansible_user=$PI_USERNAME ansible_ssh_pass='{{ lookup(\"env\", \"ANSIBLE_SSH_PASS\") }}'" >> $INVENTORY_FILE
+echo "[master_node]" > "$INVENTORY_FILE"
+echo "master ansible_host=${NODE_IPS[0]}" >> "$INVENTORY_FILE"
 
-echo -e "\n[worker_nodes]" >> $INVENTORY_FILE
+echo -e "\n[worker_nodes]" >> "$INVENTORY_FILE"
 for i in 1 2 3; do
-  echo "${NODE_NAMES[$i]} ansible_host=${NODE_IPS[$i]} ansible_user=$PI_USERNAME ansible_ssh_pass='{{ lookup(\"env\", \"ANSIBLE_SSH_PASS\") }}'" >> $INVENTORY_FILE
+  echo "${NODE_NAMES[$i]} ansible_host=${NODE_IPS[$i]}" >> "$INVENTORY_FILE"
 done
 
-echo -e "\n[rpi_cluster:children]" >> $INVENTORY_FILE
-echo "master_node" >> $INVENTORY_FILE
-echo "worker_nodes" >> $INVENTORY_FILE
+echo -e "\n[rpi_cluster:children]" >> "$INVENTORY_FILE"
+{ echo "master_node"; echo "worker_nodes"; } >> "$INVENTORY_FILE"
 
 echo -e "\nNetwork scan, SSH key retrieval, and Ansible inventory setup complete."
 echo "Ansible inventory file created as $INVENTORY_FILE."
