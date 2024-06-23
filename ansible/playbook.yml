@@ -1,6 +1,8 @@
 ---
-- hosts: master_node
-  become: yes
+- name: Play for master_node
+  hosts: master_node
+  become: true
 
-- hosts: worker_nodes
-  become: yes
+- name: Play for worker_nodes
+  hosts: worker_nodes
+  become: true
