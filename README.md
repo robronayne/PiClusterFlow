@@ -300,7 +300,7 @@ cat /proc/cgroups
 Verify that the memory cgroup is enabled. The output should include a line similar to:
 
 ```plaintext
-memory  1       1       0
+memory  0       126       1
 ```
 
 Additionally, compare the output of your `cmdline.txt` file to ensure it has the necessary parameters for cgroup settings. The file should contain:
