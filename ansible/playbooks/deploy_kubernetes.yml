@@ -1,0 +1,32 @@
+---
+- name: Initialize k3s Master
+  hosts: master_node
+  become: yes
+  roles:
+    - k3s_master
+
+- name: Join Worker Nodes
+  hosts: worker_nodes
+  become: yes
+  roles:
+    - k3s_worker
+
+- name: Fetch and update kubeconfig
+  hosts: localhost
+  gather_facts: no
+  become: no
+  vars:
+    kubeconfig_path: "{{ lookup('env', 'HOME') + '/.kube/k3sconfig' }}"
+  tasks:
+    - name: Fetch kubeconfig from master node
+      fetch:
+        src: /etc/rancher/k3s/k3s.yaml
+        dest: "{{ kubeconfig_path }}"
+        flat: true
+      delegate_to: master
+
+    - name: Replace server IP address in local kubeconfig
+      replace:
+        path: "{{ kubeconfig_path }}"
+        regexp: 'server: https://.*:6443'
+        replace: 'server: https://{{ hostvars["master"]["ansible_host"] }}:6443'
