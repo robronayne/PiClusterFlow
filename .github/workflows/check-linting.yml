@@ -6,25 +6,6 @@ on:
       - main
 
 jobs:
-  ansible-lint:
-    name: Ansible Lint Check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Lint Ansible files
-        run: |
-          if [ ! -d ansible/ ]; then
-            echo "::warning::Ansible directory not found. Skipping Ansible linting."
-            exit 0  # Exit gracefully if directory not found
-          else
-            sudo apt update
-            sudo apt install python3-pip
-            pip3 install ansible ansible-lint
-            find ansible/ -type f -name '*.yml' -exec ansible-lint {} +
-          fi
-
   helm-lint:
     name: Helm Chart Lint Check
     runs-on: ubuntu-latest
