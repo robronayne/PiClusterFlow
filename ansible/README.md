@@ -93,7 +93,7 @@ After running the playbook, you can verify that Docker, Helm, Kubernetes, and No
       CGroup: /system.slice/node_exporter.service
                └─<PID> /usr/local/bin/node_exporter
    ```
-   The <date>, <time>, <PID>, <number>, <memory>, and <CPU> will be replaced by actual values when run. This abbreviated output indicates that Node Exporter is active and running.
+   The `<date>`, `<time>`, `<PID>`, `<number>`, `<memory>`, and `<CPU>` will be replaced by actual values when run. This abbreviated output indicates that Node Exporter is active and running.
    
 ### Troubleshooting
 
