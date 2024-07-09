@@ -44,9 +44,3 @@
     name: node_exporter
     state: started
     enabled: yes
-
-- name: Ensure Node Exporter service is running
-  systemd:
-    name: node_exporter
-    state: started
-    enabled: yes
