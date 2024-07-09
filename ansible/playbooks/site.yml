@@ -5,6 +5,14 @@
   roles:
     - common
 
-- import_playbook: deploy_docker.yml
-- import_playbook: deploy_kubernetes.yml
-- import_playbook: deploy_helm.yml
+- name: Deploy Docker
+  import_playbook: deploy_docker.yml
+
+- name: Deploy Kubernetes
+  import_playbook: deploy_kubernetes.yml
+
+- name: Deploy Helm
+  import_playbook: deploy_helm.yml
+
+- name: Deploy Node Exporter
+  import_playbook: deploy_node_exporter.yml
