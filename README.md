@@ -21,25 +21,19 @@ PiClusterFlow/
 │   │   ├── deploy_docker.yml
 │   │   ├── deploy_helm.yml
 │   │   ├── deploy_kubernetes.yml
+│   │   ├── deploy_node_exporter.yml
 │   │   └── site.yml
 │   └── roles/
-│       ├── common/
-│       │   ├── handlers/
-│       │   |   └── main.yml
-│       │   └── tasks/
-│       │       └── main.yml
-│       ├── docker/
-│       │   └── tasks/
-│       │       └── main.yml
-│       ├── helm/
-│       │   └── tasks/
-│       │       └── main.yml
-│       ├── k3s_master/
-│       │   └── tasks/
-│       │       └── main.yml
-│       └── k3s_worker/
-│           └── tasks/
-│               └── main.yml
+│       └── ...
+├── helm/
+│   ├── grafana/
+│   │   ├── Chart.yaml
+│   │   ├── values.yaml
+│   │   └── templates/
+│   └── prometheus/
+│       ├── Chart.yaml
+│       ├── values.yaml
+│       └── templates/
 ├── setup_node.sh
 ├── init_ansible.sh
 └── README.md
